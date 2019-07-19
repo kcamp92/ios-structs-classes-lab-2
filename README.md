@@ -11,6 +11,24 @@ struct Room {
      let length: Double
      let width: Double
 }
+
+```
+```
+struct Room {
+var maxOccupancy: Int
+var length: Double
+var  width: Double
+}
+var condo = Room(maxOccupancy: 3, length: 10.0, width: 15.0)
+
+condo.maxOccupancy
+condo.length
+condo.width
+
+var newCondo = condo
+newCondo.maxOccupancy = 5
+print(newCondo)
+print(condo)
 ```
 
 ## Question 2
@@ -23,7 +41,21 @@ class Bike {
     var hasBell = false
 }
 ```
+```
+class Bike {
+var wheelNumber = 2
+var hasBell = false
+}
+let freddiBike = Bike ()
 
+print(freddiBike.wheelNumber)
+let newBike = freddiBike
+print(newBike.wheelNumber)
+freddiBike.wheelNumber = 3
+print(freddiBike.wheelNumber)
+newBike.wheelNumber
+print(newBike.wheelNumber)
+```
 ## Question 3
 
 a. Given the Animal class below, create a Bird subclass with a new `canFly` property.
@@ -36,9 +68,38 @@ class Animal {
     }
 }
 ```
-
 b. Override the printDescription method to have the instance of the Bird object print out its name and whether it can fly
+```
+class Animal {
+var name: String
 
+init(name: String) {
+self.name = name
+}
+func printDescription () {
+print("I am an animal named \(name)")
+}
+}
+
+let newAnimal = Animal(name: "Polly")
+newAnimal.name
+
+class Bird: Animal {
+var species: String
+var canFly = true
+
+init(name:String, species: String, canFly: Bool) {
+self.canFly = canFly
+self.species = species
+super.init(name: name)
+}
+override func printDescription() {
+print("my name is \(name), and its \(canFly) that i fly")
+}
+}
+let newBird = Bird (name: "polly", species: "parrot", canFly: true)
+newBird.printDescription()
+```
 
 ## Question 4
 
@@ -59,6 +120,42 @@ class Bike {
 a. Create a `LoudBike` subclass of Bike.  When you call `ringBell` it should ring the bell in all caps.
 
 b. Give `LoudBike` a new method called `ringBell(times:)` that rings the bell a given number of times
+```
+class Bike {
+var wheelNumber = 2
+var wheelWidth = 1.3
+var hasBell = true
+func ringBell() {
+if hasBell {
+print("Ring!")
+}
+}
+}
+
+class Loudbike: Bike {
+
+var color: String
+init (color: String, wheelNumber: Int, wheelWidth: Double, hasBell: Bool) {
+self.color = color
+//        self.wheelNumber = wheelNumber
+//        self.wheelWidth = wheelWidth
+//        self.hasBell = hasBell
+//super.init(wheelNumber: wheelNumber, wheelWidth: wheelWidth, hasBell: hasBell)
+}
+override func ringBell() {
+if hasBell {
+print("RING! \(printRingBell(times: 4)) times ")
+}
+}
+
+private func printRingBell(times: Int) -> Int {
+return times
+}
+}
+
+let louderBike = Loudbike(color: "pink", wheelNumber: 2, wheelWidth: 3.0, hasBell: true)
+louderBike.ringBell()
+```
 
 
 ## Question 5
